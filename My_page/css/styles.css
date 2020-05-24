@@ -41,8 +41,13 @@ body {
 .btn-color{
     background-color: rgb(248, 212, 6);
     color: #0f0f0f;
-    
+
 }
+    
+.modal-color{
+    background-color: #0066ff;
+}
+
 .tab-content {
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
