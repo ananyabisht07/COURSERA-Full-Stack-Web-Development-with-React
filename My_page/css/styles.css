@@ -38,3 +38,14 @@ body {
 .thead-dark{
     background-color: #130738;
 }
+.btn-color{
+    background-color: rgb(248, 212, 6);
+    color: #0f0f0f;
+    
+}
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
