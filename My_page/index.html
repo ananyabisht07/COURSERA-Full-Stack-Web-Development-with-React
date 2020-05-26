@@ -30,10 +30,16 @@
                     <li class="nav-item"><a class="nav-link" href="contactus.html"><span class="fa fa-address-card fa-lg"></span> Contact</a></li>
                 </ul>
                 <span class="navbar-text">
-                    <a data-toggle="modal" data-target="#loginModal">
+                    <a  id="mylogin">
                         <span class="fa fa-sign-in"></span> Login
                     </a>
                 </span>
+                <!--
+                <span class="navbar-text">
+                    <a data-toggle="modal" data-target="#loginModal">
+                        <span class="fa fa-sign-in"></span> Login
+                    </a>
+                </span> -->
             </div>
         </div>
     </nav>
@@ -41,9 +47,9 @@
     <div id="loginModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg" role="content">
             <div class="modal-content">
-                <div class="modal-header modal-color text-white">
+                <div class="modal-header  text-white">
                     <h4 class="modal-title">Login</h4>
-                    <button type="button" class="close" data-dismiss="modal">
+                    <button type="button" class="close " data-dismiss="modal">
                         &times;
                     </button>
                 </div>
@@ -80,13 +86,13 @@
     <div id="reserveModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg" role="content">
             <div class="modal-content">
-                <div class="modal-header ">
+                <div class="modal-header  text-white">
                     <h4 class="modal-title">Reserve a Table</h4>
                     <button type="button" class="close" data-dismiss="modal">
                         &times;
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body ">
 
                     <div class="form-group row">
                         <label for="guest" class="col-12 col-md-2 col-form-label">Number of Guests </label> 
@@ -167,8 +173,13 @@
                 </div>
                 <div class="col-12 col-sm-3 align-self-center">
                     <a class="btn btn-warning btn-lg btn-block" href="#" role="button" 
-                        data-toggle="modal" data-target="#reserveModal">Reserve Table </a>
+                        id="reserve">Reserve Table </a>
                 </div>
+                <!--
+                <div class="col-12 col-sm-3 align-self-center">
+                    <a class="btn btn-warning btn-lg btn-block" href="#" role="button" 
+                        data-toggle="modal" data-target="#reserveModal">Reserve Table </a>
+                </div> -->
         </div>
     </header>
 
@@ -428,6 +439,20 @@
         });
     });
 </script> 
+
+<script>
+    $('#mylogin').click(function(){
+        $('#loginModal').modal('show')
+    });
+</script>
+
+<script>
+    $('#reserve').click(function(){
+        $('#reserveModal').modal('show')
+    });
+</script>
+
+
 <!--comment-->
 </body>
 
