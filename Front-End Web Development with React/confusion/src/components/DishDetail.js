@@ -1,12 +1,12 @@
-import React,{ Component} from 'react';
+import React from 'react';
 import { Card, CardImg, CardTitle, CardBody, CardText } from 'reactstrap';
 
 
 
 
-class DishDetail extends Component {
+
     
-    renderComments({dish})  {
+    function RenderComments({dish})  {
         console.log("qwerty",dish)
         const {comments}= dish
         return(
@@ -30,8 +30,8 @@ class DishDetail extends Component {
     }
     
     
-    render() {
-        const {dish}=this.props
+    const DishDetail = (props) => {
+        const {dish}=props
         
         
         if (dish!=null) {
@@ -54,7 +54,7 @@ class DishDetail extends Component {
                             <Card>
                                 <CardBody>
                                     <CardTitle><h4>Comments</h4></CardTitle>
-                                    <this.renderComments dish={dish} />
+                                    <RenderComments dish={props.dish} />
                                 </CardBody>
                             </Card>   
                         </div>
@@ -69,6 +69,6 @@ class DishDetail extends Component {
         }
         
     }
-}
+
 
 export default DishDetail;
