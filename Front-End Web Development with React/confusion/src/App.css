@@ -21,6 +21,9 @@
     background: #2c115a ;
     color:floralwhite;
 }
+.my-color{
+    background: red;
+}
 
 address{
     font-size:80%;

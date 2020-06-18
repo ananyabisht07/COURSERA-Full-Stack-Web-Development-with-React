@@ -23,9 +23,9 @@ import { FadeTransform } from 'react-animation-components';
                     <Card>
                         <CardImg src={baseUrl + item.image} alt={item.name} />
                         <CardBody>
-                        <CardTitle>{item.name}</CardTitle>
-                        {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null }
-                        <CardText>{item.description}</CardText>
+                            <CardTitle>{item.name}</CardTitle>
+                            {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null }
+                            <CardText>{item.description}</CardText>
                         </CardBody>
                     </Card>
                 </FadeTransform>
