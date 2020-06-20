@@ -209,6 +209,14 @@
       "comment": "This is a comment.",
       "date": "2020-06-17T18:28:45.227Z",
       "id": 20
+    },
+    {
+      "dishId": 0,
+      "rating": "4",
+      "author": "Dhruv Bisht",
+      "comment": "This is very delicious.",
+      "date": "2020-06-19T14:04:35.851Z",
+      "id": 21
     }
   ],
   "promotions": [
