@@ -4,27 +4,30 @@ import Menu from './MenuComponent';
 import Dishdetail from './DishdetailComponent'
 import Contact from './ContactComponent'
 import About from './AboutComponent'
-import { Provider as PaperProvider } from 'react-native-paper';
-import { View, Text} from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { createDrawerNavigator, DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
-import { Entypo,Ionicons, MaterialIcons,FontAwesome5,MeterialIcons } from '@expo/vector-icons';
-import { SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context'
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Entypo,Ionicons, MaterialIcons,FontAwesome5, } from '@expo/vector-icons';
 import CustomDrawerContentComponent from './CustomDrawerContentComponent'
 import { connect } from 'react-redux';
-import { fetchDishes } from '../redux/ActionCreators';
+import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
+
 
 const mapStateToProps = state => {
-  console.log("hello!!!!!!!!!!!!!!!!!!1")
   return {
     dishes: state.dishes,
-   
+    comments: state.comments,
+    promotions: state.promotions,
+    leaders: state.leaders
   }
 }
-const mapDispatchToProps = dispatch => (
+const mapDispatchToProps = dispatch => ({
   
-  {fetchDishes: () => dispatch(fetchDishes()),} )
+  fetchDishes: () => dispatch(fetchDishes()),
+  fetchComments: () => dispatch(fetchComments()),
+  fetchPromos: () => dispatch(fetchPromos()),
+  fetchLeaders: () => dispatch(fetchLeaders()),
+  })
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();   
@@ -165,8 +168,11 @@ function AboutNavigator ({ navigation }) {
 class Main extends Component {
   
   componentDidMount() {
-    console.log("ye le!!!!!",this.props)
+    console.log(this.props)
     this.props.fetchDishes();
+    this.props.fetchComments();
+    this.props.fetchPromos();
+    this.props.fetchLeaders();
   }
   render() {
     return (
