@@ -12,6 +12,19 @@ import { createDrawerNavigator, DrawerItem, DrawerContentScrollView } from '@rea
 import { Entypo,Ionicons, MaterialIcons,FontAwesome5,MeterialIcons } from '@expo/vector-icons';
 import { SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context'
 import CustomDrawerContentComponent from './CustomDrawerContentComponent'
+import { connect } from 'react-redux';
+import { fetchDishes } from '../redux/ActionCreators';
+
+const mapStateToProps = state => {
+  console.log("hello!!!!!!!!!!!!!!!!!!1")
+  return {
+    dishes: state.dishes,
+   
+  }
+}
+const mapDispatchToProps = dispatch => (
+  
+  {fetchDishes: () => dispatch(fetchDishes()),} )
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();   
@@ -149,16 +162,21 @@ function AboutNavigator ({ navigation }) {
  )
 }
 //<View style={{flex: 1, paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight}}>
-export default function Main() {
-    return (
-      
-        <NavigationContainer>
-          < MainNavigator />
-        </NavigationContainer>
-    
-    );
+class Main extends Component {
+  
+  componentDidMount() {
+    console.log("ye le!!!!!",this.props)
+    this.props.fetchDishes();
   }
+  render() {
+    return (
+      <NavigationContainer>
+        <MainNavigator/>
+      </NavigationContainer>
+      );
+  }
+}
 
-
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
   
