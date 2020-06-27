@@ -6,7 +6,7 @@ import { PROMOTIONS } from '../Shared/promotions';
 import { LEADERS } from '../Shared/leaders';
 
 function RenderItem(props) {
-    console.log(props)
+
     const item = props.item;
     
     if (item != null) {
