@@ -5,6 +5,16 @@ import { DISHES } from '../Shared/dishes';
 import { COMMENTS } from '../Shared/comments';
 //import { Icon } from 'react-native-paper/lib/typescript/src/components/Avatar/Avatar';
 
+import { connect } from 'react-redux';
+import { baseUrl } from '../Shared/baseUrl';
+
+const mapStateToProps = state => {
+    return {
+      dishes: state.dishes,
+      comments: state.comments
+    }
+  }
+
 
 function RenderComments(props) {
 
@@ -42,7 +52,7 @@ function RenderDish(props) {
             return(
                 <Card
                 featuredTitle={dish.name}
-                image={require('./images/uthappizza.png')}>
+                image={{uri: baseUrl + dish.image}}>
                     <Text style={{margin: 10}}>
                         {dish.description}
                     </Text>
@@ -67,8 +77,6 @@ class Dishdetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dishes: DISHES,
-            comments: COMMENTS,
             favourites: []
         };
     }
@@ -82,11 +90,11 @@ class Dishdetail extends Component {
         return(
             <ScrollView>
                 <RenderDish 
-                    dish={this.state.dishes[+dishId]} 
+                    dish={this.props.dishes.dishes[+dishId]} 
                      favourite={this.state.favourites.some(el => el === dishId)}
                     onPress={() => this.markFavourite(dishId)} 
                 />
-                <RenderComments comments={this.state.comments.filter((comment) => 
+                <RenderComments comments={this.props.comments.comments.filter((comment) => 
                     comment.dishId === dishId )} />
             </ScrollView>
             
@@ -94,4 +102,4 @@ class Dishdetail extends Component {
     }
 }
 
-export default Dishdetail;
+export default connect(mapStateToProps)(Dishdetail);
