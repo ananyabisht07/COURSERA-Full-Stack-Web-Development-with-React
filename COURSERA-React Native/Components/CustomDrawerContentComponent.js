@@ -1,9 +1,9 @@
 
 import React from 'react';
-import { View, StyleSheet, Image} from 'react-native'
+import { View, StyleSheet, Image,Text} from 'react-native'
 import { DrawerItem, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import { Entypo, MaterialIcons,FontAwesome5, } from '@expo/vector-icons';
-import {Drawer,Text,} from 'react-native-paper'
+//import {Drawer,Text,} from 'react-native-paper'
 //import { SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context'
 //import { ScrollView } from 'react-native-gesture-handler';
 
