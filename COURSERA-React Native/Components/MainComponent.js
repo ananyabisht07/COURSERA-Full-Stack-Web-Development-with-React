@@ -194,7 +194,6 @@ function ReservationNavigator ({ navigation }) {
 class Main extends Component {
   
   componentDidMount() {
-    console.log(this.props)
     this.props.fetchDishes();
     this.props.fetchComments();
     this.props.fetchPromos();
