@@ -11,7 +11,7 @@ import { Entypo,Ionicons, MaterialIcons,FontAwesome5, } from '@expo/vector-icons
 import CustomDrawerContentComponent from './CustomDrawerContentComponent'
 import { connect } from 'react-redux';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
-
+import Reservation from './ReservationComponent';
 
 const mapStateToProps = state => {
   return {
@@ -58,6 +58,10 @@ function MainNavigator () {
           <Entypo name="info-with-circle" size={34}  color="black" /> )
       }}/>
       <Drawer.Screen name='ContactUs' component={ContactNavigator} options={{
+        drawerIcon: () => (
+          <MaterialIcons name="contact-phone" size={34}  color="black" />)
+      }}/>
+      <Drawer.Screen name='Reservation' component={ReservationNavigator} options={{
         drawerIcon: () => (
           <MaterialIcons name="contact-phone" size={34}  color="black" />)
       }}/>
@@ -164,6 +168,28 @@ function AboutNavigator ({ navigation }) {
   
  )
 }
+function ReservationNavigator ({ navigation }) {
+  return (
+    <Stack.Navigator 
+      initialRouteName='Reservation'
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#512DA8'
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          color: "#fff"
+        }
+      }}
+    >
+      <Stack.Screen name='Reservation' component={Reservation} options={{
+        title:'About Us',
+      }} />
+    </Stack.Navigator>
+  
+ )
+}
+
 //<View style={{flex: 1, paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight}}>
 class Main extends Component {
   
