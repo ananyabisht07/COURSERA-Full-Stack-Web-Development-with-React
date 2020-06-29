@@ -4,10 +4,11 @@ import Menu from './MenuComponent';
 import Dishdetail from './DishdetailComponent'
 import Contact from './ContactComponent'
 import About from './AboutComponent'
+import Favorites from './FavoriteComponent'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Entypo,Ionicons, MaterialIcons,FontAwesome5, } from '@expo/vector-icons';
+import { Entypo,Ionicons, MaterialIcons,FontAwesome5, FontAwesome, AntDesign} from '@expo/vector-icons';
 import CustomDrawerContentComponent from './CustomDrawerContentComponent'
 import { connect } from 'react-redux';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
@@ -51,7 +52,7 @@ function MainNavigator () {
       }} />
       <Drawer.Screen name='Menu' component={MenuNavigator} options={{
         drawerIcon: () => (
-          <MaterialIcons name="restaurant-menu" size={34}  color="black" />   )
+          <AntDesign name="menu-unfold" size={34}  color="black" />   )
       }}/>
       <Drawer.Screen name='AboutUs' component={AboutNavigator} options={{
         drawerIcon: () => (
@@ -61,9 +62,13 @@ function MainNavigator () {
         drawerIcon: () => (
           <MaterialIcons name="contact-phone" size={34}  color="black" />)
       }}/>
+      <Drawer.Screen name='My Favorite' component={FavoriteNavigator} options={{
+        drawerIcon: () => (
+          <FontAwesome name="heart" size={34}  color="black" />)
+      }}/>
       <Drawer.Screen name='Reservation' component={ReservationNavigator} options={{
         drawerIcon: () => (
-          <MaterialIcons name="contact-phone" size={34}  color="black" />)
+          <MaterialIcons name="restaurant-menu" size={34}  color="black" />)
       }}/>
     </Drawer.Navigator>
   
@@ -184,6 +189,28 @@ function ReservationNavigator ({ navigation }) {
     >
       <Stack.Screen name='Reservation' component={Reservation} options={{
         title:'About Us',
+      }} />
+    </Stack.Navigator>
+  
+ )
+}
+
+function FavoriteNavigator ({ navigation }) {
+  return (
+    <Stack.Navigator 
+      initialRouteName='Favorite'
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#512DA8'
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          color: "#fff"
+        }
+      }}
+    >
+      <Stack.Screen name='Favorite' component={Favorites} options={{
+        title:'My Favorite',
       }} />
     </Stack.Navigator>
   
