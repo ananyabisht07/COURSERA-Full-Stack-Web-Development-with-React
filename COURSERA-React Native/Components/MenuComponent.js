@@ -4,6 +4,7 @@ import { Tile } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../Shared/baseUrl';
 import { Loading } from './LoadingComponent';
+import * as Animatable from 'react-native-animatable';
 
 
 class Menu extends Component {
@@ -13,6 +14,7 @@ class Menu extends Component {
         
         const renderMenuItem = ({item, index}) => {
             return (
+                  <Animatable.View animation="fadeInRightBig" duration={2000}>
                     <Tile
                         key={index}
                         title={item.name}
@@ -21,6 +23,7 @@ class Menu extends Component {
                         onPress={() => navigation.navigate('Dishdetail',{dishId:item.id})}
                         imageSrc={{ uri: baseUrl + item.image}}
                       />
+                  </Animatable.View>
             );
         };
         
