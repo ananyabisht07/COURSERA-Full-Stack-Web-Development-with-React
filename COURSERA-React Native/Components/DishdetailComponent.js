@@ -61,10 +61,16 @@ function RenderDish(props) {
 
     const dish = props.dish;
     
-    handleViewRef = ref => this.view = ref;
+    handleViewRef = (ref) => (this.view = ref);
 
     const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
         if ( dx < -200 )
+            return true;
+        else
+            return false;
+    }
+    const recognizeComment = ({moveX,moveY,dx,dy}) => {
+        if(dx>200)
             return true;
         else
             return false;
@@ -90,6 +96,9 @@ function RenderDish(props) {
                     ],
                     { cancelable: false }
                 );
+                else if (recognizeComment(gestureState)) {
+                    props.comment();
+                  }
 
             return true;
         }
