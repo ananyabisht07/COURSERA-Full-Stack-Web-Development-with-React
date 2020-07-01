@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
-import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, Alert } from 'react-native'
+import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, Alert, Animated } from 'react-native'
 import DatePicker from 'react-native-datepicker'
 import * as Animatable from 'react-native-animatable'
+import { Notifications } from "expo";
+import * as Permissions from "expo-permissions";
+
 
 class Reservation extends Component {
 
     constructor(props) {
         super(props)
+        this.bounceValue = new Animated.Value(0);
         this.state = {
             guests: 1,
             smoking: false,
@@ -31,7 +35,10 @@ class Reservation extends Component {
                 {
                     text: 'OK',
                     style: 'default',
-                    onPress: () => this.resetForm()
+                    onPress: () => {
+                        this.resetForm()
+                        this.presentLocalNotification(this.state.date)
+                    }
                 }
             ],
             { cancelable: false }
@@ -48,6 +55,40 @@ class Reservation extends Component {
             smoking: false,
             date: ''
         })
+    }
+    componentDidMount() {
+        Animated.timing(this.bounceValue, {
+          toValue: 1,
+          duration: 1000,
+        }).start();
+        this.presentLocalNotification(this.state.date);
+      }
+
+    async obtainNotificationPermission() {
+        let permission = await Permissions.getAsync(Permissions.USER_FACING_NOTIFICATIONS);
+        if (permission.status !== 'granted') {
+            permission = await Permissions.askAsync(Permissions.USER_FACING_NOTIFICATIONS);
+            if (permission.status !== 'granted') {
+                Alert.alert('Permission not granted to show notifications');
+            }
+        }
+        return permission;
+    }
+
+    async presentLocalNotification(date) {
+        await this.obtainNotificationPermission();
+        Notifications.presentLocalNotificationAsync({
+            title: 'Your Reservation',
+            body: 'Reservation for '+ date + ' requested',
+            ios: {
+                sound: true
+            },
+            android: {
+                sound: true,
+                vibrate: true,
+                color: '#512DA8'
+            }
+        });
     }
 
     render() {
