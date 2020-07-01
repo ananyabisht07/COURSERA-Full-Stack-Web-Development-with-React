@@ -5,10 +5,11 @@ import Dishdetail from './DishdetailComponent'
 import Contact from './ContactComponent'
 import About from './AboutComponent'
 import Favorites from './FavoriteComponent'
+import Login from './LoginComponent'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Entypo,Ionicons, MaterialIcons,FontAwesome5, FontAwesome, AntDesign} from '@expo/vector-icons';
+import { Entypo,Ionicons, MaterialIcons,FontAwesome5, FontAwesome, AntDesign, MaterialCommunityIcons} from '@expo/vector-icons';
 import CustomDrawerContentComponent from './CustomDrawerContentComponent'
 import { connect } from 'react-redux';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
@@ -46,6 +47,10 @@ function MainNavigator () {
         itemStyle: { marginVertical: 5 },
       }}
        >
+       <Drawer.Screen name='Login' component={LoginNavigator} options={{
+        drawerIcon: () => (
+          <MaterialCommunityIcons name="login" size={34}  color="black"/>)
+      }} />
       <Drawer.Screen name='Home' component={HomeNavigator} options={{
         drawerIcon: () => (
           <FontAwesome5 name="home" size={34}  color="black"/>)
@@ -211,6 +216,28 @@ function FavoriteNavigator ({ navigation }) {
     >
       <Stack.Screen name='Favorite' component={Favorites} options={{
         title:'My Favorite',
+      }} />
+    </Stack.Navigator>
+  
+ )
+}
+
+function LoginNavigator ({ navigation }) {
+  return (
+    <Stack.Navigator 
+      initialRouteName='Login'
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#512DA8'
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          color: "#fff"
+        }
+      }}
+    >
+      <Stack.Screen name='Login' component={Login} options={{
+        title:'Login',
       }} />
     </Stack.Navigator>
   
