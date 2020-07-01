@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Text, View, ScrollView, FlatList, Modal, Button, PanResponder ,Alert} from 'react-native';
+import { Text, View, ScrollView, FlatList, Modal, Button, PanResponder ,Alert, Share, StyleSheet} from 'react-native';
 import { Card, Icon, Input, Rating } from "react-native-elements";
 import * as Animatable from 'react-native-animatable';
 //import { Icon } from 'react-native-paper/lib/typescript/src/components/Avatar/Avatar';
@@ -20,6 +20,7 @@ const mapDispatchToProps = dispatch => ({
     postComment: (dishId, rating, author, comment) =>
     dispatch(postComment(dishId, rating, author, comment)),
 })
+
 
 function RenderComments(props) {
 
@@ -104,6 +105,16 @@ function RenderDish(props) {
         }
     })
 
+    const shareDish = (title, message, url) => {
+        Share.share({
+            title: title,
+            message: title + ': ' + message + ' ' + url,
+            url: url
+        },{
+            dialogTitle: 'Share ' + title
+        })
+    }
+
     
         if (dish != null) {
             return(
@@ -131,6 +142,13 @@ function RenderDish(props) {
                                 color="#512DA8"
                                 onPress={() => props.comment()}
                             />
+                            <Icon
+                            raised
+                            reverse
+                            name='share'
+                            type='font-awesome'
+                            color='#51D2A8'
+                            onPress={() => shareDish(dish.name, dish.description, baseUrl + dish.image)} />
                         </View>
             
                     </Card>
