@@ -84,6 +84,7 @@ class Reservation extends Component {
                 sound: true
             },
             android: {
+                channelId:'reservation',
                 sound: true,
                 vibrate: true,
                 color: '#512DA8'
