@@ -45,7 +45,7 @@ function MainNavigator () {
       }}
       drawerContent= {(props) => <CustomDrawerContentComponent {...props} />}
       drawerContentOptions={{
-        activeTintColor: '#e91e63',
+        activeTintColor: '#000066',
         itemStyle: { marginVertical: 5 },
       }}
        >

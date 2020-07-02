@@ -50,14 +50,14 @@ class LoginTab extends Component {
       return (
         <View style={styles.container}>
           <Input
-            placeholder="Username"
+            placeholder=" Username"
             leftIcon={{ type: "font-awesome", name: "user-o" }}
             onChangeText={(username) => this.setState({ username })}
             value={this.state.username}
             containerStyle={styles.formInput}
           />
           <Input
-            placeholder="Password"
+            placeholder=" Password"
             leftIcon={{ type: "font-awesome", name: "key" }}
             onChangeText={(password) => this.setState({ password })}
             value={this.state.password}
@@ -73,7 +73,8 @@ class LoginTab extends Component {
           <View style={styles.formButton}>
             <Button
               onPress={() => this.handleLogin()}
-              title="Login"
+              title=" Login"
+              
               icon={
                 <Icon
                   name="sign-in"
@@ -84,24 +85,25 @@ class LoginTab extends Component {
               }
               buttonStyle={{
                 backgroundColor: "#512DA8",
+                width:150
               }}
             />
           </View>
           <View style={styles.formButton}>
             <Button
               onPress={() => this.props.navigation.navigate("Register")}
-              title="Register"
+              title=" Register"
               type="clear"
               icon={
                 <Icon
                   name="user-plus"
                   type="font-awesome"
                   size={24}
-                  color="blue"
+                  color="#512DA8"
                 />
               }
               titleStyle={{
-                color: "blue",
+                color: "#512DA8",
               }}
             />
           </View>
@@ -197,46 +199,54 @@ class RegisterTab extends Component {
                 loadingIndicatorSource={require("./images/logo.png")}
                 style={styles.image}
               />
-              <Button title="Camera" onPress={this.getImageFromCamera} />
-              <Button title="Gallery" onPress={this.getImageFromGallery} />
+              <Button  title="Camera" onPress={this.getImageFromCamera} buttonStyle={{
+                backgroundColor: "#512DA8",
+                width:100}}
+              />
+              <Button  title="Gallery" onPress={this.getImageFromGallery} buttonStyle={{
+                backgroundColor: "#512DA8",
+                width:100,
+                margin:10
+                }}
+              />
             </View>
             <Input
-              placeholder="Username"
+              placeholder=" Username"
               leftIcon={{ type: "font-awesome", name: "user-o" }}
               onChangeText={(username) => this.setState({ username })}
               value={this.state.username}
               containerStyle={styles.formInput}
             />
             <Input
-              placeholder="Password"
+              placeholder=" Password"
               leftIcon={{ type: "font-awesome", name: "key" }}
               onChangeText={(password) => this.setState({ password })}
               value={this.state.password}
               containerStyle={styles.formInput}
             />
             <Input
-              placeholder="First Name"
+              placeholder=" First Name"
               leftIcon={{ type: "font-awesome", name: "user-o" }}
               onChangeText={(lastname) => this.setState({ firstname })}
               value={this.state.firstname}
               containerStyle={styles.formInput}
             />
             <Input
-              placeholder="Last Name"
+              placeholder=" Last Name"
               leftIcon={{ type: "font-awesome", name: "user-o" }}
               onChangeText={(lastname) => this.setState({ lastname })}
               value={this.state.lastname}
               containerStyle={styles.formInput}
             />
             <Input
-              placeholder="Email"
+              placeholder=" Email"
               leftIcon={{ type: "font-awesome", name: "envelope-o" }}
               onChangeText={(email) => this.setState({ email })}
               value={this.state.email}
               containerStyle={styles.formInput}
             />
             <CheckBox
-              title="Remember Me"
+              title=" Remember Me"
               center
               checked={this.state.remember}
               onPress={() => this.setState({ remember: !this.state.remember })}
@@ -245,7 +255,7 @@ class RegisterTab extends Component {
             <View style={styles.formButton}>
               <Button
                 onPress={() => this.handleRegister()}
-                title="Register"
+                title=" Register"
                 icon={
                   <Icon
                     name="user-plus"
@@ -256,6 +266,7 @@ class RegisterTab extends Component {
                 }
                 buttonStyle={{
                   backgroundColor: "#512DA8",
+                  width:150
                 }}
               />
             </View>
@@ -275,11 +286,11 @@ const styles = StyleSheet.create({
     imageContainer: {
         flex: 1,
         flexDirection: "row",
-        justifyContent: "space-between",
-        margin: 20,
+        margin: 10,
+        alignItems:'center',
     },
     image: {
-        margin: 10,
+        margin: 5,
         width: 80,
         height: 60,
     },

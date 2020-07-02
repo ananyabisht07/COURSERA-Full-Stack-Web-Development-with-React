@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, Alert, Animated } from 'react-native'
+import { Text, View, ScrollView, StyleSheet, Picker, Switch, Alert, Animated } from 'react-native'
+import { Button, Icon } from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
 import * as Animatable from 'react-native-animatable'
 import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
+import * as Calender from 'expo-calendar'
 
 
 class Reservation extends Component {
@@ -16,6 +18,7 @@ class Reservation extends Component {
             smoking: false,
             date: '',
             showModal: false,
+            notifications:{},
         }
     }
 
@@ -74,6 +77,40 @@ class Reservation extends Component {
         }
         return permission;
     }
+
+    async obtainCalendarPermission() {
+        let permission = await Permissions.getAsync(Permissions.CALENDAR);
+        if (permission.status !== "granted") {
+          const permission = await Permissions.getAsync(Permissions.CALENDAR);
+          if (permission.status !== "granted") {
+            Alert.alert("Permission not granted to show notifications");
+          }
+        }
+    
+        return permission;
+      }
+    
+      async addReservationToCalendar(date) {
+        await this.obtainCalendarPermission();
+        let myCalendar = await Calendar.getCalendarsAsync();
+        const defaultCalendars = myCalendar.filter(
+          (each) => each.source.name === "account_name_local"
+        );
+    
+        const newCalendarID = await Calendar.createEventAsync(
+          defaultCalendars[0].id,
+          {
+            title: "Con Fusion Table Reservation",
+            startDate: new Date(Date.parse(date)),
+            endDate: new Date(Date.parse(date) + 2 * 60 * 60 * 1000),
+            timeZone: "Asia/Hong_Kong",
+    
+            location:
+              "121, Clear Water Bay Road, Clear Water Bay, Kowloon, Hong Kong",
+          }
+        );
+      }
+    
 
     async presentLocalNotification(date) {
         await this.obtainNotificationPermission();
@@ -155,10 +192,22 @@ class Reservation extends Component {
                     </View>
                     <View style={styles.formRow}>
                         <Button
-                            title='Reserve'
-                            color='#512DA8'
+                            title=' Reserve'
                             onPress={() => this.handleReservation()}
                             accessibilityLabel='Learn more about this purple button'
+                            icon={
+                                <Icon
+                                  name="registered"
+                                  type="font-awesome"
+                                  size={24}
+                                  color="white"
+                                />
+                              }
+                            buttonStyle={{
+                                backgroundColor: "#512DA8",
+                                width:150,
+                                fontSize:25
+                              }}
                         />
                     </View>
                     {/* <Modal
